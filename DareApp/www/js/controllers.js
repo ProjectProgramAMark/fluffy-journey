@@ -21,19 +21,8 @@ angular.module('starter.controllers', [])
   $scope.chat = Chats.get($stateParams.chatId);
 })
 
-.controller('DashCtrl', function($scope) {
-  $scope.data = {
-    title: 'ChallengeMe.js'
-  };
-})
-
-.controller('SettingsCtrl', function($scope) {
+.controller('AccountCtrl', function($scope) {
   $scope.settings = {
     enableFriends: true
   };
-
-  $scope.data = {
-    text: 'Hello HELLO FUCKerWorld'
-  };
 });
-
