@@ -53,9 +53,9 @@ angular.module('starter.services', [])
   var url = apiBaseUrl + '/login';
     return {
         loginUser: function(credentials, success, failure) {
-            return $http.post(url, {'username': credentials.username, 'password': credentials.password}).then(function(res) {
+            return $http.post(url, {'email': credentials.email, 'password': credentials.password}).then(function(res) {
               console.log(res);
-              window.localStorage['token'] = response;
+              //window.localStorage['token'] = response;
               return res;
             }, function(err) {
               console.log(err);

@@ -34,7 +34,7 @@ angular.module('starter.controllers', [])
     $scope.data = {};
 
     $scope.login = function() {
-        LoginService.loginUser({'username': $scope.data.username, 'password': $scope.data.password}).then(function(data) {
+        LoginService.loginUser({'email': $scope.data.username, 'password': $scope.data.password}).then(function(data) {
           $state.go('tab.feeds');
         }, function(err) {
           var alertPopup = $ionicPopup.alert({
