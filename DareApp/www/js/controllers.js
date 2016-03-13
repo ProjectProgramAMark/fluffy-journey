@@ -9,11 +9,18 @@ angular.module('starter.controllers', [])
 
   // $scope.$on('$ionicView.enter', function(e) {
   // });
-  $scope.comments = Comments.getFeed();
+  Comments.getFeed().then(function(res) {
+    $scope.comments = res;
+    console.log($scope.comments);
+  }, function(err) {
+    console.log(err);
+  });
+
+  //console.log($scope.comments);
   //$scope.comments = Comments.all();
-  $scope.remove = function(comment) {
-    Comments.remove(comment);
-  };
+  // $scope.remove = function(comment) {
+  //   Comments.remove(comment);
+  // };
 
 //   $scope.items = [{
 //     'content': 'content number 1',
@@ -48,8 +55,8 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('FeedDetailCtrl', function($scope, $stateParams, Feeds) {
-  $scope.feed = Feeds.get($stateParams.chatId);
+.controller('FeedsDetailCtrl', function($scope, $stateParams, Comments) {
+  $scope.comments = Comments.get($stateParams.id);
 })
 
 

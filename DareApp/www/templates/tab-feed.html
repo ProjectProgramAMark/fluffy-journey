@@ -22,17 +22,19 @@
       <section id="cd-timeline" class="cd-container">
 
         <div ng-repeat="comment in comments">
-          <div class="cd-timeline-block" ng-if="!isDefined(comments)">
+          <div class="cd-timeline-block">
           	<!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
             <div class="cd-timeline-picture text-center dark">
               <img ng-src="/img/{{activity.profilePicture}}"></img>
             </div>
             <!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
+            <a ui-sref="chat-detail({id: comment.id})">
             <div class="cd-timeline-content padding dark">
-            	<h5 class="marginBottom0 marginTop0">Bernie Sanders</h5>
-            	<p class="marginTop5 cd-author">Dankcember</p>
-            	<p class="timelineText">Real issues</p>
+            	<h5 class="marginBottom0 marginTop0">{{comment.content}}</h5>
+            	<p class="marginTop5 cd-author">{{comment.email}}</p>
+            	<p class="timelineText">{{comment.description}}</p>
             </div>
+          </a>
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.factory('Comments', function($http) {
+.service('Comments', function($http, $q) {
   var url = apiBaseUrl + '/feed';
   // Might use a resource here that returns a JSON array
   /*
@@ -38,26 +38,38 @@ angular.module('starter.services', [])
 
   return {
     getFeed: function(success, failure) {
-      return $http.get(url).then(function(res) {
-        console.log(res.data);
-        return res.data;
-      }, function(err) {
-        console.log("There is an error!", err);
-      });
+      // return $http.get(url).then(function(res) {
+      //   console.log(res.data);
+      //   return res.data;
+      // }, function(err) {
+      //   console.log("There is an error!", err);
+      // });
       // For debugging
       //return comments;
+
+      var deferred = $q.defer();
+     $http.get(url)
+       .success(function(res) {
+         console.log("res is: ", res);
+         deferred.resolve(res);
+       }).error(function(msg, code) {
+          deferred.reject(msg);
+          $log.error(msg, code);
+       });
+     return deferred.promise;
+
     },
-    remove: function(comment) {
-      feeds.splice(feeds.indexOf(comment), 1);
-    }
-    // get: function(feedId) {
-    //   for (var i = 0; i < feeds.length; i++) {
-    //     if (feeds[i].id === parseInt(feedId)) {
-    //       return feeds[i];
-    //     }
-    //   }
-    //   return null;
+    // remove: function(comment) {
+    //   feeds.splice(feeds.indexOf(comment), 1);
     // }
+    get: function(feedId) {
+      for (var i = 0; i < feeds.length; i++) {
+        if (feeds[i].id === parseInt(feedId)) {
+          return feeds[i];
+        }
+      }
+      return null;
+    }
   };
 })
 
@@ -76,7 +88,7 @@ angular.module('starter.services', [])
     };
 })
 
-.service('FeedDetailService', function($http, Comments) {
+.service('FeedsDetailService', function($http, Comments) {
   var url = apiBaseUrl + '/feed:id';
     return {
         getChallenge: function(success, failure) {
