@@ -30,7 +30,7 @@ angular.module('starter.controllers', [])
                 template: 'Please check your credentials!'
             });
         });
-    }
+    };
 })
 
 
