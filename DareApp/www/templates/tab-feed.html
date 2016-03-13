@@ -28,13 +28,13 @@
               <img ng-src="/img/{{activity.profilePicture}}"></img>
             </div>
             <!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
-            <a ui-sref="chat-detail({id: comment.id})">
+            <a href="#/feeds/{{contact.id}}">
             <div class="cd-timeline-content padding dark">
             	<h5 class="marginBottom0 marginTop0">{{comment.content}}</h5>
             	<p class="marginTop5 cd-author">{{comment.email}}</p>
             	<p class="timelineText">{{comment.description}}</p>
             </div>
-          </a>
+            </a>
           </div>
         </div>
       </section>

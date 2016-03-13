@@ -62,7 +62,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
-    .state('chat-detail', {
+    .state('tab.chat-detail', {
       url: '/feeds/:id',
       views: {
         'tab-chats': {
