@@ -49,26 +49,33 @@ angular.module('starter.services', [])
   };
 })
 
-.service('LoginService', function($q) {
+.service('LoginService', function($q, $http) {
     return {
-        loginUser: function(name, pw) {
-            var deferred = $q.defer();
-            var promise = deferred.promise;
-
-            if (name == 'user' && pw == 'secret') {
-                deferred.resolve('Welcome ' + name + '!');
-            } else {
-                deferred.reject('Wrong credentials.');
-            }
-            promise.success = function(fn) {
-                promise.then(fn);
-                return promise;
-            }
-            promise.error = function(fn) {
-                promise.then(null, fn);
-                return promise;
-            }
-            return promise;
+        loginUser: function(credentials, success, failure) {
+            // var deferred = $q.defer();
+            // var promise = deferred.promise;
+            //
+            // if (name == 'user' && pw == 'secret') {
+            //     deferred.resolve('Welcome ' + name + '!');
+            // } else {
+            //     deferred.reject('Wrong credentials.');
+            // }
+            // promise.success = function(fn) {
+            //     promise.then(fn);
+            //     return promise;
+            // }
+            // promise.error = function(fn) {
+            //     promise.then(null, fn);
+            //     return promise;
+            // }
+            // return promise;
+            return $http.post(credentials.username, credentials.password).then(function(res) {
+              console.log(res);
+              //window.localStorage['token'] = response;
+              return res;
+            }, function(err) {
+              console.log(err);
+            });
         }
-    }
+    };
 });
