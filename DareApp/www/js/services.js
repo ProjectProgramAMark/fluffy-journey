@@ -1,10 +1,10 @@
 angular.module('starter.services', [])
 
-.factory('Chats', function() {
+.factory('Feeds', function() {
   // Might use a resource here that returns a JSON array
 
   // Some fake testing data
-  var chats = [{
+  var feeds = [{
     id: 0,
     name: 'Ben Sparrow',
     lastText: 'You on your way?',
@@ -33,15 +33,15 @@ angular.module('starter.services', [])
 
   return {
     all: function() {
-      return chats;
+      return feeds;
     },
-    remove: function(chat) {
-      chats.splice(chats.indexOf(chat), 1);
+    remove: function(feed) {
+      feeds.splice(feeds.indexOf(feed), 1);
     },
-    get: function(chatId) {
-      for (var i = 0; i < chats.length; i++) {
-        if (chats[i].id === parseInt(chatId)) {
-          return chats[i];
+    get: function(feedId) {
+      for (var i = 0; i < feeds.length; i++) {
+        if (feeds[i].id === parseInt(feedId)) {
+          return feeds[i];
         }
       }
       return null;
@@ -54,7 +54,7 @@ angular.module('starter.services', [])
         loginUser: function(name, pw) {
             var deferred = $q.defer();
             var promise = deferred.promise;
- 
+
             if (name == 'user' && pw == 'secret') {
                 deferred.resolve('Welcome ' + name + '!');
             } else {
