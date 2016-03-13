@@ -1,5 +1,7 @@
 // Ionic Starter App
 
+var apiBaseUrl = 'http://localhost:3000/data';
+
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
@@ -46,16 +48,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       templateUrl: 'templates/login.html',
       controller: 'LoginCtrl'
   })
-
-  // .state('tab.dash', {
-  //   url: '/dash',
-  //   views: {
-  //     'tab-dash': {
-  //       templateUrl: 'templates/tab-dash.html',
-  //       controller: 'DashCtrl'
-  //     }
-  //   }
-  // })
 
   .state('tab.feeds', {
       url: '/feeds',
