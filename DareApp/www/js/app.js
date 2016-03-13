@@ -9,7 +9,7 @@ var apiBaseUrl = 'http://localhost:3000/data';
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ionic-material'])
 
-.run(function($ionicPlatform) {
+.run(function($ionicPlatform, $http) {
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -21,6 +21,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
+    }
+    if($http.defaults.headers.common.Authorization) {
+      $http.defaults.headers.common.Authorization = window.localStorage['token'];
     }
   });
 })
@@ -60,10 +63,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     })
 
     .state('tab.chat-detail', {
-      url: '/chats/:chatId',
+      url: '/feeds/:id',
       views: {
         'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
+          templateUrl: 'templates/feed-detail.html',
           controller: 'ChatDetailCtrl'
         }
       }

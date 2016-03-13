@@ -1,19 +1,4 @@
-<!-- <ion-view view-title="Feed">
-  <ion-content>
-    <ion-list>
-      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-repeat="comment in comments" type="item-text-wrap" ui-sref="#/tab/feeds/{{comment.id}})">
-        <h2>{{comment.content}}</h2>
-        <p>{{comment.id}}</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-
-        <ion-option-button class="button-assertive" ng-click="remove(feed)">
-          Delete
-        </ion-option-button>
-      </ion-item>
-    </ion-list>
-  </ion-content>
-</ion-view> -->
-<ion-view view-title="Post">
+<!-- <ion-view view-title="Post">
   <ion-content class="padding">
       <h5 class="marginBottom0 marginTop0">Donald Trump</h5>
       <p class="marginTop5 cd-author">Dankcember</p>
@@ -24,11 +9,11 @@
         <div ng-repeat="comment in comments">
           <div class="cd-timeline-block" ng-if="!isDefined(comments)">
           	<!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
-            <div class="cd-timeline-picture text-center dark">
+            <!-- <div class="cd-timeline-picture text-center dark">
               <img ng-src="/img/{{activity.profilePicture}}"></img>
             </div>
             <!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
-            <div class="cd-timeline-content padding dark">
+            <!-- <div class="cd-timeline-content padding dark">
             	<h5 class="marginBottom0 marginTop0">Bernie Sanders</h5>
             	<p class="marginTop5 cd-author">Dankcember</p>
             	<p class="timelineText">Real issues</p>
@@ -37,4 +22,5 @@
         </div>
       </section>
   </ion-content>
-</ion-view>
+</ion-view> -->
+<ion-thread comments="comments" post="post"></ion-thread>

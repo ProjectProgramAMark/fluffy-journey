@@ -1,61 +1,87 @@
 angular.module('starter.services', [])
 
-.factory('Feeds', function() {
+.factory('Comments', function($http) {
+  var url = apiBaseUrl + '/feed';
   // Might use a resource here that returns a JSON array
-
+  /*
+  <h2>{{item.userPost}}</h2>
+  <p>{{item.content}}</p>
+  <p>{{item.timestamp}}</p>
+  */
   // Some fake testing data
-  var feeds = [{
-    id: 0,
-    name: 'Ben Sparrow',
-    lastText: 'You on your way?',
-    face: 'img/ben.png'
-  }, {
-    id: 1,
-    name: 'Max Lynx',
-    lastText: 'Hey, it\'s me',
-    face: 'img/max.png'
-  }, {
-    id: 2,
-    name: 'Adam Bradleyson',
-    lastText: 'I should buy a boat',
-    face: 'img/adam.jpg'
-  }, {
-    id: 3,
-    name: 'Perry Governor',
-    lastText: 'Look at my mukluks!',
-    face: 'img/perry.png'
-  }, {
-    id: 4,
-    name: 'Mike Harrington',
-    lastText: 'This is wicked good ice cream.',
-    face: 'img/mike.png'
-  }];
+  // var comments = [{
+  //   id: 0,
+  //   userPost: 'Ben Sparrow',
+  //   content: 'You on your way?',
+  //   timestamp: '100000'
+  // }, {
+  //   id: 1,
+  //   userPost: 'Max Lynx',
+  //   content: 'Hey, it\'s me',
+  //   timestamp: '1000001'
+  // }, {
+  //   id: 2,
+  //   userPost: 'Adam Bradleyson',
+  //   content: 'I should buy a boat',
+  //   timestamp: '1000001'
+  // }, {
+  //   id: 3,
+  //   userPost: 'Perry Governor',
+  //   content: 'Look at my mukluks!',
+  //   timestamp: '1000001'
+  // }, {
+  //   id: 4,
+  //   userPost: 'Mike Harrington',
+  //   content: 'This is wicked good ice cream.',
+  //   timestamp: '1000001'
+  // }];
 
   return {
-    all: function() {
-      return feeds;
+    getFeed: function(success, failure) {
+      return $http.get(url).then(function(res) {
+        console.log(res.data);
+        return res.data;
+      }, function(err) {
+        console.log("There is an error!", err);
+      });
+      // For debugging
+      //return comments;
     },
-    remove: function(feed) {
-      feeds.splice(feeds.indexOf(feed), 1);
-    },
-    get: function(feedId) {
-      for (var i = 0; i < feeds.length; i++) {
-        if (feeds[i].id === parseInt(feedId)) {
-          return feeds[i];
-        }
-      }
-      return null;
+    remove: function(comment) {
+      feeds.splice(feeds.indexOf(comment), 1);
     }
+    // get: function(feedId) {
+    //   for (var i = 0; i < feeds.length; i++) {
+    //     if (feeds[i].id === parseInt(feedId)) {
+    //       return feeds[i];
+    //     }
+    //   }
+    //   return null;
+    // }
   };
 })
 
-.service('LoginService', function($q, $http) {
+.service('LoginService', function($http) {
   var url = apiBaseUrl + '/login';
     return {
         loginUser: function(credentials, success, failure) {
             return $http.post(url, {'email': credentials.email, 'password': credentials.password}).then(function(res) {
               console.log(res);
-              //window.localStorage['token'] = response;
+              window.localStorage['token'] = res;
+              return res;
+            }, function(err) {
+              console.log(err);
+            });
+        }
+    };
+})
+
+.service('FeedDetailService', function($http, Comments) {
+  var url = apiBaseUrl + '/feed:id';
+    return {
+        getChallenge: function(success, failure) {
+            return $http.get(url).then(function(res) {
+              console.log(res);
               return res;
             }, function(err) {
               console.log(err);
