@@ -23,7 +23,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       StatusBar.styleDefault();
     }
     if($http.defaults.headers.common.Authorization) {
-      $http.defaults.headers.common.Authorization = window.localStorage['token'];
+      //$http.defaults.headers.common.Authorization = window.localStorage['token'];
+      $http.defaults.headers.common['x-access-token'] = window.localStorage.token;
     }
   });
 })
@@ -62,12 +63,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
-    .state('tab.chat-detail', {
+    .state('tab.challenge-detail', {
       url: '/feeds/:id',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/feed-detail.html',
-          controller: 'FeedsDetailCtrl'
+        'tab-challenge-detail': {
+          templateUrl: 'templates/challenge-detail.html',
+          controller: 'ChallengeDetailCtrl'
         }
       }
     })

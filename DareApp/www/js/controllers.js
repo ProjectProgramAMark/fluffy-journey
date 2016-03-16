@@ -45,6 +45,7 @@ angular.module('starter.controllers', [])
 
     $scope.login = function() {
         LoginService.loginUser({'email': $scope.data.username, 'password': $scope.data.password}).then(function(data) {
+          console.log(data);
           $state.go('tab.feeds');
         }, function(err) {
           var alertPopup = $ionicPopup.alert({
@@ -55,7 +56,7 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('FeedsDetailCtrl', function($scope, $stateParams, Comments) {
+.controller('ChallengeDetailCtrl', function($scope, $stateParams, Comments) {
   $scope.comments = Comments.get($stateParams.id);
 })
 
