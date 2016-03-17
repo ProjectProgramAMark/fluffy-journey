@@ -1,6 +1,6 @@
 angular.module('starter.services', [])
 
-.service('Comments', function($http, $q) {
+.service('FeedService', function($http, $q) {
   var url = apiBaseUrl + '/feed';
 
   return {
@@ -71,7 +71,7 @@ angular.module('starter.services', [])
 })
 
 .service('RegisterService', function($http, $q) {
-  var url = apiBaseUrl + '/register';
+  var url = apiBaseUrl + '/newUser';
   return {
     registerUser: function(data, success, failure) {
         var deferred = $q.defer();

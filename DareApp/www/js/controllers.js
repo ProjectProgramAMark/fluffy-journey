@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 
-.controller('FeedsCtrl', function($scope, $http, Comments) {
+.controller('FeedsCtrl', function($scope, $http, FeedService) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -9,7 +9,7 @@ angular.module('starter.controllers', [])
 
   // $scope.$on('$ionicView.enter', function(e) {
   // });
-  Comments.getFeed().then(function(res) {
+  FeedService.getFeed().then(function(res) {
     $scope.comments = res;
     console.log($scope.comments);
   }, function(err) {
