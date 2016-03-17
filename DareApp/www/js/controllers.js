@@ -55,10 +55,33 @@ angular.module('starter.controllers', [])
           });
         });
     };
+
+    $scope.register = function() {
+      $state.go('register');
+    };
 })
 
 .controller('ChallengeDetailCtrl', function($scope, $stateParams, Comments) {
   $scope.comments = Comments.get($stateParams.id);
+})
+
+.controller('RegisterCtrl', function($scope, RegisterService, $ionicPopup, $state, $http) {
+  $scope.data = {};
+  //console.log("register controller still in progress");
+  // RegisterService.register() should go here
+  $scope.register = function() {
+    RegisterService.registerUser({'email': $scope.data.email, 'password': $scope.data.password, 'username': $scope.data.username}).then(function(data) {
+      console.log("Controller says registration is a success!");
+      $state.go('login');
+    }, function(err) {
+      console.log(JSON.stringify(err));
+      // I have the alert for now, should be replaced with validation later
+      var alertPopup = $ionicPopup.alert({
+          title: 'Registration failed!',
+          template: 'Please check your credentials!'
+      });
+    });
+  };
 })
 
 

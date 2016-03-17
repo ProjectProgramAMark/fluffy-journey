@@ -54,6 +54,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       controller: 'LoginCtrl'
   })
 
+  .state('register', {
+      url: '/register',
+      templateUrl: 'templates/register.html',
+      controller: 'RegisterCtrl'
+  })
+
   .state('tab.feeds', {
       url: '/feeds',
       views: {

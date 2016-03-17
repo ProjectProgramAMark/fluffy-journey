@@ -37,6 +37,8 @@ angular.module('starter.services', [])
   var url = apiBaseUrl + '/login';
     return {
         loginUser: function(credentials, success, failure) {
+          // uses $q to turn function into a promise
+          // reasoning being so the client side can handle either success/failure
           var deferred = $q.defer();
           var promise = deferred.promise;
           $http.post(url, {'email': credentials.email, 'password': credentials.password}).then(function(res) {
@@ -67,6 +69,30 @@ angular.module('starter.services', [])
         }
     };
 })
+
+.service('RegisterService', function($http, $q) {
+  var url = apiBaseUrl + '/register';
+  return {
+    registerUser: function(data, success, failure) {
+        var deferred = $q.defer();
+        var promise = deferred.promise;
+        $http.post(url, {
+          'email': data.email,
+          'username': data.username,
+          'password': data.password
+        }).then(function(res) {
+          if(data.email && data.username && data.password) {
+            deferred.resolve("registration successful!");
+          } else {
+            deferred.reject({ error: 'invalid registration request' });
+          }
+        }, function(err) {
+            deferred.reject({ error: err });
+          });
+          return promise;
+        }
+    };
+  })
 
 .service('FeedsDetailService', function($http, Comments) {
   var url = apiBaseUrl + '/feed:id';
