@@ -91,6 +91,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
   });
 
   // if none of the above states are matched, use this as the fallback
+  // should change to 404 error page
   $urlRouterProvider.otherwise('/login');
 
 });
