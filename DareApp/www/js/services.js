@@ -13,7 +13,8 @@ angular.module('starter.services', [])
          deferred.resolve(res);
        }).error(function(msg, code) {
           deferred.reject(msg);
-          console.log(msg, code);
+          // Using JSON stringify to get the console to actually show the message
+          console.log(JSON.stringify(msg), code);
        });
      return deferred.promise;
 
@@ -37,11 +38,12 @@ angular.module('starter.services', [])
     return {
         loginUser: function(credentials, success, failure) {
             return $http.post(url, {'email': credentials.email, 'password': credentials.password}).then(function(res) {
-              console.log(res);
-              window.localStorage.token = res;
+              console.log(JSON.stringify(res));
+              window.localStorage.token = res.data.token;
+              console.log("The token should now be saved as", window.localStorage.token);
               return res;
             }, function(err) {
-              console.log(err);
+              console.log(JSON.stringify(err));
             });
         }
     };

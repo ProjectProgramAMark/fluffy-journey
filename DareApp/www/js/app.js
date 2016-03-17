@@ -24,6 +24,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
     }
     if($http.defaults.headers.common.Authorization) {
       //$http.defaults.headers.common.Authorization = window.localStorage['token'];
+      console.log(window.localStorage.token);
       $http.defaults.headers.common['x-access-token'] = window.localStorage.token;
     }
   });
