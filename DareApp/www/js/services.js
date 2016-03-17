@@ -33,18 +33,37 @@ angular.module('starter.services', [])
   };
 })
 
-.service('LoginService', function($http) {
+.service('LoginService', function($http, $q) {
   var url = apiBaseUrl + '/login';
     return {
         loginUser: function(credentials, success, failure) {
-            return $http.post(url, {'email': credentials.email, 'password': credentials.password}).then(function(res) {
-              console.log(JSON.stringify(res));
+          var deferred = $q.defer();
+          var promise = deferred.promise;
+          $http.post(url, {'email': credentials.email, 'password': credentials.password}).then(function(res) {
+            console.log(JSON.stringify(res));
+            if((typeof res.data.token !== 'undefined')) {
+              console.log("deferred is RESOLVED");
+              deferred.resolve( { token: res.data.token } );
               window.localStorage.token = res.data.token;
-              console.log("The token should now be saved as", window.localStorage.token);
-              return res;
-            }, function(err) {
-              console.log(JSON.stringify(err));
-            });
+              //console.log("The token should now be saved as", window.localStorage.token);
+            } else {
+              //console.log("deferred is REJECTED");
+              deferred.reject( { error: 'invalid_response' } );
+            }
+          }, function(err) {
+              if((typeof result.data.error !== 'undefined')) {
+                  deferred.reject( { error: err.data.error, status: err.status } );
+              } else {
+                deferred.reject( { error: 'invalid_login' } );
+              }
+          });
+          return promise;
+              // window.localStorage.token = res.data.token;
+              // console.log("The token should now be saved as", window.localStorage.token);
+              // return res;
+            // }, function(err) {
+            //   console.log(JSON.stringify(err));
+            // });
         }
     };
 })

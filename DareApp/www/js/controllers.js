@@ -45,8 +45,9 @@ angular.module('starter.controllers', [])
 
     $scope.login = function() {
         LoginService.loginUser({'email': $scope.data.username, 'password': $scope.data.password}).then(function(data) {
+          console.log("Controller says login is a success!");
           console.log(JSON.stringify(data.token));
-          //$state.go('tab.feeds');
+          $state.go('tab.feeds');
         }, function(err) {
           var alertPopup = $ionicPopup.alert({
               title: 'Login failed!',
