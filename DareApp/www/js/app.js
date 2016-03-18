@@ -64,6 +64,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
   .state('tab.feeds', {
       url: '/feeds',
+      parent: 'tab',
       views: {
         'tab-feeds': {
           templateUrl: 'templates/tab-feed.html',
@@ -72,10 +73,10 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
-    .state('tab.challenge-detail', {
+    .state('tab.feeds.challenge_detail', {
       url: '/feeds/:id',
       views: {
-        'tab-challenge-detail': {
+        'tab-feeds@tab': {
           templateUrl: 'templates/challenge-detail.html',
           controller: 'ChallengeDetailCtrl'
         }

@@ -11,10 +11,14 @@ angular.module('starter.controllers', [])
   // });
   FeedService.getFeed().then(function(res) {
     $scope.comments = res;
-    console.log($scope.comments);
+    console.log(JSON.stringify($scope.comments));
   }, function(err) {
     console.log(err);
   });
+
+  function onItemClick() {
+    $state.go(tab.feeds.challenge_detail);
+  }
 
   //console.log($scope.comments);
   //$scope.comments = Comments.all();
@@ -61,8 +65,12 @@ angular.module('starter.controllers', [])
     };
 })
 
-.controller('ChallengeDetailCtrl', function($scope, $stateParams, Comments) {
+.controller('ChallengeDetailCtrl', function($scope, $stateParams, ChallengeDetailService, $state) {
   // $scope.comments = Comments.get($stateParams.id);
+  $scope.comments = ChallengeDetailService.getChallenge($stateParams.id);
+  console.log("State params is: ", JSON.stringify($stateParams));
+  //console.log("State params ID is: ", $stateParams.id);
+  $state.go('tab.feeds.challenge_detail');
 })
 
 .controller('ErrorCtrl', function($scope) {

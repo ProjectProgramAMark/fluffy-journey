@@ -28,7 +28,7 @@
               <img ng-src="/img/{{activity.profilePicture}}"></img>
             </div>
             <!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
-            <a href="#/feeds/{{contact.id}}">
+            <a ui-sref="tab.feeds.challenge_detail({id: comment._id})">
             <div class="cd-timeline-content padding dark">
             	<h5 class="marginBottom0 marginTop0">{{comment.content}}</h5>
             	<p class="marginTop5 cd-author">{{comment.email}}</p>

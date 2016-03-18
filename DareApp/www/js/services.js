@@ -9,7 +9,7 @@ angular.module('starter.services', [])
     var deferred = $q.defer();
      $http.get(url)
        .success(function(res) {
-         console.log("res is: ", res);
+         //console.log("res is: ", res);
          deferred.resolve(res);
        }).error(function(msg, code) {
           deferred.reject(msg);
@@ -49,7 +49,7 @@ angular.module('starter.services', [])
               window.localStorage.token = res.data.token;
               $http.defaults.headers.common.x_access_token = window.localStorage.token;
               //console.log("the http default should be saved as: ", $http.defaults.headers.common.x_access_token);
-              console.log("The token should now be saved as", window.localStorage.token);
+              //console.log("The token should now be saved as", window.localStorage.token);
             } else {
               //console.log("deferred is REJECTED");
               deferred.reject( { error: 'invalid_response' } );
@@ -96,15 +96,17 @@ angular.module('starter.services', [])
     };
   })
 
-.service('ChallengeDetailService', function($http, Comments) {
-  var url = apiBaseUrl + '/feed:id';
+.service('ChallengeDetailService', function($http, $q) {
     return {
-        getChallenge: function(success, failure) {
+        getChallenge: function(id, success, failure) {
+            var deferred = $q.defer();
+            var promise = deferred.promise;
+            var url = apiBaseUrl + '/feed/:id';
             return $http.get(url).then(function(res) {
-              console.log("success on getting challenge detail: ", JSON.stringify(res));
+              deferred.resolve("success on getting challenge detail: ", JSON.stringify(res));
               return res;
             }, function(err) {
-              console.log(console.log("success on getting challenge detail: ", JSON.stringify(err)));
+              deferred.reject(console.log("error on getting challenge detail: ", JSON.stringify(err)));
             });
         }
     };
