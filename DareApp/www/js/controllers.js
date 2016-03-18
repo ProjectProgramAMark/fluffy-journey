@@ -44,9 +44,9 @@ angular.module('starter.controllers', [])
     $scope.data = {};
 
     $scope.login = function() {
-        LoginService.loginUser({'email': $scope.data.username, 'password': $scope.data.password}).then(function(data) {
+        LoginService.loginUser({'email': $scope.data.email, 'password': $scope.data.password}).then(function(data) {
           console.log("Controller says login is a success!");
-          console.log(JSON.stringify(data.token));
+          //console.log(JSON.stringify(data.token));
           $state.go('tab.feeds');
         }, function(err) {
           var alertPopup = $ionicPopup.alert({
@@ -62,7 +62,12 @@ angular.module('starter.controllers', [])
 })
 
 .controller('ChallengeDetailCtrl', function($scope, $stateParams, Comments) {
-  $scope.comments = Comments.get($stateParams.id);
+  // $scope.comments = Comments.get($stateParams.id);
+})
+
+.controller('ErrorCtrl', function($scope) {
+  console.log("Error page was called");
+  // $scope.comments = Comments.get($stateParams.id);
 })
 
 .controller('RegisterCtrl', function($scope, RegisterService, $ionicPopup, $state, $http) {

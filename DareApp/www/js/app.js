@@ -22,11 +22,13 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
     }
-    if($http.defaults.headers.common.Authorization) {
-      //$http.defaults.headers.common.Authorization = window.localStorage['token'];
-      console.log(window.localStorage.token);
-      $http.defaults.headers.common['x-access-token'] = window.localStorage.token;
-    }
+    // if($http.defaults.headers.common.Authorization) {
+    //   //$http.defaults.headers.common.Authorization = window.localStorage['token'];
+    //   console.log(window.localStorage.token);
+    //   $http.defaults.headers.common.Authorization = window.localStorage.token;
+    // } else {
+    //   console.log("else is being printed, meaning the token is never being saved to the default header");
+    // }
   });
 })
 
@@ -86,6 +88,15 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       'tab-account': {
         templateUrl: 'templates/tab-account.html',
         controller: 'AccountCtrl'
+      }
+    }
+  })
+  .state('error', {
+    url: '/error',
+    views: {
+      'error': {
+        templateUrl: 'templates/error.html',
+        controller: 'ErrorCtrl'
       }
     }
   });
