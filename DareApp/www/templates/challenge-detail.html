@@ -27,9 +27,10 @@
 
 <ion-view view-title="Post">
   <ion-content class="padding">
-      <h5 class="marginBottom0 marginTop0">Detail</h5>
-      <p class="marginTop5 cd-author">Swaggggg</p>
-      <p class="timelineText">Blah blah</p>
+      <h5 class="marginBottom0 marginTop0">{{challenge.title}}</h5>
+      <!-- Change userId to get username -->
+      <p class="marginTop5 cd-author">{{challenge.userId}}</p>
+      <p class="timelineText">{{challenge.content}}</p>
       <hr>
       <section id="cd-timeline" class="cd-container">
 

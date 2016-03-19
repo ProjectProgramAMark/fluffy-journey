@@ -42,6 +42,7 @@ angular.module('starter.controllers', [])
   // $scope.comments = Comments.get($stateParams.id);
   ChallengeDetailService.getChallenge($stateParams.id).then(function(res) {
     console.log("res is ", JSON.stringify(res));
+    $scope.challenge = res.data.challenge;
     $scope.comments = res.data.comments;
     console.log("the comments are: ", JSON.stringify($scope.comments));
     console.log("State params is: ", JSON.stringify($stateParams));
