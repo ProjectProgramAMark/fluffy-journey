@@ -11,37 +11,10 @@ angular.module('starter.controllers', [])
   // });
   FeedService.getFeed().then(function(res) {
     $scope.comments = res;
-    console.log(JSON.stringify($scope.comments));
+    //console.log(JSON.stringify($scope.comments));
   }, function(err) {
     console.log(err);
   });
-
-  function onItemClick() {
-    $state.go(tab.feeds.challenge_detail);
-  }
-
-  //console.log($scope.comments);
-  //$scope.comments = Comments.all();
-  // $scope.remove = function(comment) {
-  //   Comments.remove(comment);
-  // };
-
-//   $scope.items = [{
-//     'content': 'content number 1',
-//     'timestamp': '10000001',
-//     'userPost': 'markos96',
-//     'id': 1
-//   }, {
-//     'content': 'content number 2',
-//     'timestamp': '10000002',
-//     'userPost': 'markos97',
-//     'id': 2
-//   }, {
-//     'content': 'content number 3',
-//     'timestamp': '10000003',
-//     'userPost': 'markos98',
-//     'id': 3
-//   }];
 })
 
 .controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state, $http) {
@@ -67,10 +40,15 @@ angular.module('starter.controllers', [])
 
 .controller('ChallengeDetailCtrl', function($scope, $stateParams, ChallengeDetailService, $state) {
   // $scope.comments = Comments.get($stateParams.id);
-  $scope.comments = ChallengeDetailService.getChallenge($stateParams.id);
-  console.log("State params is: ", JSON.stringify($stateParams));
-  //console.log("State params ID is: ", $stateParams.id);
-  $state.go('tab.feeds.challenge_detail');
+  ChallengeDetailService.getChallenge($stateParams.id).then(function(res) {
+    console.log("res is ", JSON.stringify(res));
+    $scope.comments = res.data.comments;
+    console.log("the comments are: ", JSON.stringify($scope.comments));
+    console.log("State params is: ", JSON.stringify($stateParams));
+    $state.go('tab.feeds.challenge_detail');
+  }, function(err) {
+    console.log("there has been an error retrieving the challenge detail: ", err);
+  });
 })
 
 .controller('ErrorCtrl', function($scope) {

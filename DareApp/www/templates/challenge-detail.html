@@ -23,4 +23,32 @@
       </section>
   </ion-content>
 </ion-view> -->
-<ion-thread comments="comments" post="post"></ion-thread>
+<!-- <ion-thread comments="comments"></ion-thread> -->
+
+<ion-view view-title="Post">
+  <ion-content class="padding">
+      <h5 class="marginBottom0 marginTop0">Detail</h5>
+      <p class="marginTop5 cd-author">Swaggggg</p>
+      <p class="timelineText">Blah blah</p>
+      <hr>
+      <section id="cd-timeline" class="cd-container">
+
+        <div ng-repeat="comment in comments">
+          <div class="cd-timeline-block">
+          	<!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
+            <div class="cd-timeline-picture text-center dark">
+              <img ng-src="/img/{{activity.profilePicture}}"></img>
+            </div>
+            <!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
+            <!-- <a ui-sref="tab.feeds.challenge_detail({id: comment._id})"> -->
+            <div class="cd-timeline-content padding dark">
+            	<h5 class="marginBottom0 marginTop0">{{comment.content}}</h5>
+            	<!-- <p class="marginTop5 cd-author">{{comment.email}}</p>
+            	<p class="timelineText">{{comment.description}}</p> -->
+            </div>
+            <!-- </a> -->
+          </div>
+        </div>
+      </section>
+  </ion-content>
+</ion-view>

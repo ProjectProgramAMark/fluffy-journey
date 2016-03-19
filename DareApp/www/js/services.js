@@ -101,13 +101,17 @@ angular.module('starter.services', [])
         getChallenge: function(id, success, failure) {
             var deferred = $q.defer();
             var promise = deferred.promise;
-            var url = apiBaseUrl + '/feed/:id';
-            return $http.get(url).then(function(res) {
-              deferred.resolve("success on getting challenge detail: ", JSON.stringify(res));
-              return res;
+            var url = apiBaseUrl + '/feed/' + id;
+            //console.log("challenge detail url is hitting: ", url);
+            $http.get(url).then(function(res) {
+              deferred.resolve(res);
+              console.log("challenge detail retrieval successful");
+              //console.log("success on getting challenge detail: ", JSON.stringify(res));
             }, function(err) {
-              deferred.reject(console.log("error on getting challenge detail: ", JSON.stringify(err)));
+              deferred.reject("challenge detail retrieval failure");
+              //console.log("error on getting challenge detail: ", JSON.stringify(err))
             });
+            return promise;
         }
     };
 });
