@@ -1,7 +1,7 @@
 angular.module('starter.controllers', [])
 
 
-.controller('FeedsCtrl', function($scope, $http, FeedService) {
+.controller('FeedsCtrl', function($scope, $http, $state, FeedService) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),
@@ -14,15 +14,19 @@ angular.module('starter.controllers', [])
     //console.log(JSON.stringify($scope.comments));
   }, function(err) {
     console.log(err);
-  })
+  });
+
+  $scope.newChallenge = function() {
+    $state.go('newChallenge');
+  };
 })
 
 .controller('NewChallengeCtrl', function($scope, NewChallengeService) {
   // Creating a new challenge
-  $scope.newChallenge = function() {
-    FeedService.newChallenge();
-    $state.go('newChallenge');
-  };
+  // $scope.newChallenge = function() {
+  //   FeedService.newChallenge();
+  //   $state.go('newChallenge');
+  // };
 })
 
 .controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state, $http) {
