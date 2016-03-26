@@ -21,12 +21,20 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('NewChallengeCtrl', function($scope, NewChallengeService) {
-  // Creating a new challenge
-  // $scope.newChallenge = function() {
-  //   FeedService.newChallenge();
-  //   $state.go('newChallenge');
-  // };
+.controller('NewChallengeCtrl', function($scope, $stateParams, NewChallengeService) {
+  $scope.data = {};
+  $scope.postChallenge = function() {
+    console.log("New Challenge Controller activated!");
+    // Ideally when it's integrated it would have the following line:
+    //NewChallengeService.postChallenge({ 'title': $scope.data.title, 'content': $scope.data.content, 'userId': $stateParams.id })
+    NewChallengeService.postChallenge({ 'title': 'Hello world!', 'content': 'this is whats up yo', 'userId': '123456'}).then(function(res) {
+      console.log("Challenge Post is a success!");
+      console.log(res);
+    }, function(err) {
+      console.log("Challenge Post was a failure!");
+      console.log(err);
+    });
+  };
 })
 
 .controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state, $http) {

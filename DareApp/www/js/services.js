@@ -36,6 +36,24 @@ angular.module('starter.services', [])
   };
 })
 
+.service('NewChallengeService', function($http, $q) {
+  var url = apiBaseUrl + '/newChallenge';
+
+  return {
+    postChallenge: function(credentials, success, failure) {
+      var deferred = $q.defer();
+      var promise = deferred.promise;
+      $http.post(url, {'title': credentials.title, 'content': credentials.content, 'userId': credentials.userId }).then(function(res) {
+        deferred.resolve({data: res});
+        console.log("New Challenge Post is good on the service end!");
+      }, function(err) {
+        console.log(err);
+      });
+      return promise;
+    }
+  };
+})
+
 .service('LoginService', function($http, $q) {
   var url = apiBaseUrl + '/login';
     return {
