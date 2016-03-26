@@ -29,6 +29,9 @@ angular.module('starter.services', [])
         }
       }
       return null;
+    },
+    newChallenge: function() {
+      console.log("This is the new Challenge service!");
     }
   };
 })

@@ -14,7 +14,15 @@ angular.module('starter.controllers', [])
     //console.log(JSON.stringify($scope.comments));
   }, function(err) {
     console.log(err);
-  });
+  })
+})
+
+.controller('NewChallengeCtrl', function($scope, NewChallengeService) {
+  // Creating a new challenge
+  $scope.newChallenge = function() {
+    FeedService.newChallenge();
+    $state.go('newChallenge');
+  };
 })
 
 .controller('LoginCtrl', function($scope, LoginService, $ionicPopup, $state, $http) {

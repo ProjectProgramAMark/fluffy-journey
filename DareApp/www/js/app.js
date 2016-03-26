@@ -73,6 +73,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       }
     })
 
+  .state('newChallenge', {
+    url: '/newChallenge',
+    templateUrl: 'templates/challenge-new.html',
+    controller: 'FeedsCtrl'
+  })
+
     .state('tab.feeds.challenge_detail', {
       url: '/feeds/:id',
       views: {
