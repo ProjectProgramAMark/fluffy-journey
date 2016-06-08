@@ -1,8 +1,12 @@
 <ion-view view-title="New Challenge">
-  <ion-content class="padding">
+  <ion-content class="padding" ng-controller="NewChallengeCtrl">
     <label class="item item-input">
-        <span class="input-label" class="description">Enter challenge here...</span>
-        <input type="text">
+        <span class="input-label">Title<span>
+        <input type="text" ng-model="data.title">
+    </label>
+    <label class="item item-input">
+        <span class="input-label">Challenge<span>
+        <input type="text" ng-model="data.content">
     </label>
       <button class="button button-outline button-positive col-md-6" ng-click="postChallenge()">
         Post

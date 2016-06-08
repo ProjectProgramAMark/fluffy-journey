@@ -7,13 +7,13 @@ angular.module('starter.controllers', [])
   // To listen for when this page is active (for example, to refresh data),
   // listen for the $ionicView.enter event:
 
-  // $scope.$on('$ionicView.enter', function(e) {
-  // });
+  $scope.$on('$ionicView.enter', function(e) {
   FeedService.getFeed().then(function(res) {
     $scope.comments = res;
     //console.log(JSON.stringify($scope.comments));
   }, function(err) {
     console.log(err);
+  });
   });
 
   $scope.newChallenge = function() {
@@ -21,18 +21,21 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('NewChallengeCtrl', function($scope, $stateParams, NewChallengeService) {
+.controller('NewChallengeCtrl', function($scope, $state, $stateParams, NewChallengeService) {
   $scope.data = {};
   $scope.postChallenge = function() {
     console.log("New Challenge Controller activated!");
     // Ideally when it's integrated it would have the following line:
-    //NewChallengeService.postChallenge({ 'title': $scope.data.title, 'content': $scope.data.content, 'userId': $stateParams.id })
-    NewChallengeService.postChallenge({ 'title': 'Hello world!', 'content': 'this is whats up yo', 'userId': '123456'}).then(function(res) {
+    NewChallengeService.postChallenge({ 'title': $scope.data.title, 'content': $scope.data.content, 'userId': $stateParams.id })
+    //NewChallengeService.postChallenge({ 'title': 'Hello world!', 'content': 'this is whats up yo', 'userId': '123456'})
+    .then(function(res) {
       console.log("Challenge Post is a success!");
       console.log(res);
+      $state.go('tab.feeds');
     }, function(err) {
       console.log("Challenge Post was a failure!");
       console.log(err);
+      $state.go('tab.feeds');
     });
   };
 })

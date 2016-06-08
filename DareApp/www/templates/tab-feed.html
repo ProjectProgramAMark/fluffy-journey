@@ -15,9 +15,6 @@
 </ion-view> -->
 <ion-view view-title="Post">
   <ion-content class="padding">
-      <h5 class="marginBottom0 marginTop0">Donald Trump</h5>
-      <p class="marginTop5 cd-author">Dankcember</p>
-      <p class="timelineText">Blah blah</p>
       <button class="button button-outline button-positive col-md-6" ng-click="newChallenge()">
         New Challenge
       </button>
@@ -33,7 +30,7 @@
             <!-- CUSTOMIZE YOUR STYLE USING DEFAULT IONIC VALUES SUCH AS POSITIVE, CALM, BALANCED,... -->
             <a ui-sref="tab.feeds.challenge_detail({id: comment._id})">
             <div class="cd-timeline-content padding dark">
-            	<h5 class="marginBottom0 marginTop0">{{comment.content}}</h5>
+            	<h5 class="marginBottom0 marginTop0">{{comment.title}}</h5>
             	<p class="marginTop5 cd-author">{{comment.email}}</p>
             	<p class="timelineText">{{comment.description}}</p>
             </div>
